@@ -1,4 +1,4 @@
-package ss6_Inheritance.Shape;
+package ss7_Abstract_Class_And_Interface.Resize.resizeable;
 
 public class Rectangle extends Shape{
     private double width = 1.0;
@@ -52,4 +52,9 @@ public class Rectangle extends Shape{
                 + super.toString();
     }
 
+    @Override
+    public void resize(double percent) {
+        this.length = this.length + this.length * (percent / 100);
+        this.width = this.width + this.width * (percent / 100);
+    }
 }

@@ -1,9 +1,9 @@
 package ss4_class_method_java.fan;
 
 public class Fan {
-    static final int slow = 1;
-    static final int medium = 2;
-    static final int fast = 3;
+    static final int SLOW = 1;
+    static final int MEDIUM = 2;
+    static final int FAST = 3;
     int speed = 1;
     boolean on = false;
     double radius = 5;
@@ -21,15 +21,15 @@ public class Fan {
     }
 
     public static int getSlow() {
-        return slow;
+        return SLOW;
     }
 
     public static int getMedium() {
-        return medium;
+        return MEDIUM;
     }
 
     public static int getFast() {
-        return fast;
+        return FAST;
     }
 
     public int getSpeed() {

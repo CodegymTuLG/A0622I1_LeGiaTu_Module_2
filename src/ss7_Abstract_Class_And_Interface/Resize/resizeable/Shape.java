@@ -1,5 +1,5 @@
-package ss6_Inheritance.Shape;
-public class Shape {
+package ss7_Abstract_Class_And_Interface.Resize.resizeable;
+public class Shape implements Resizeable{
     private String color = "green";
     private boolean filled = true;
 
@@ -35,4 +35,9 @@ public class Shape {
                 + (isFilled() ? "filled" : "not filled");
     }
 
+
+    @Override
+    public void resize(double percent) {
+
+    }
 }

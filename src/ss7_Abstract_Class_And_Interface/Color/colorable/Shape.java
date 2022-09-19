@@ -1,5 +1,5 @@
-package ss6_Inheritance.Shape;
-public class Shape {
+package ss7_Abstract_Class_And_Interface.Color.colorable;
+public class Shape implements Colorable {
     private String color = "green";
     private boolean filled = true;
 
@@ -33,6 +33,11 @@ public class Shape {
                 + getColor()
                 + " and "
                 + (isFilled() ? "filled" : "not filled");
+    }
+
+    @Override
+    public String howToColor() {
+        return null;
     }
 
 }

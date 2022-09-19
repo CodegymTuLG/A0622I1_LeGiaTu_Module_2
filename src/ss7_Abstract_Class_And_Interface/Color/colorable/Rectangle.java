@@ -1,6 +1,6 @@
-package ss6_Inheritance.Shape;
+package ss7_Abstract_Class_And_Interface.Color.colorable;
 
-public class Rectangle extends Shape{
+public class Rectangle extends Shape {
     private double width = 1.0;
     private double length = 1.0;
 
@@ -50,6 +50,10 @@ public class Rectangle extends Shape{
                 + getLength()
                 + ", which is a subclass of "
                 + super.toString();
+    }
+    @Override
+    public String howToColor() {
+        return null;
     }
 
 }
