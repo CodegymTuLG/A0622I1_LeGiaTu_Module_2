@@ -1,12 +1,12 @@
 package case_study.furama_project.controllers;
 
-import case_study.furama_project.models.Employee;
 import case_study.furama_project.service.EmployeeServiceImpl;
 
 import java.util.*;
 public class FuramaController<choose> {
 
-    public static void displayMainMenu() {
+    public static Object displayMainMenu() {
+        List<EmployeeServiceImpl> listEmployee = new ArrayList<>();
         int choose = -1;
         Scanner screenInputValue = new Scanner(System.in);
         while (choose != 6) {
@@ -23,31 +23,67 @@ public class FuramaController<choose> {
             switch (choose) {
                 case 1:
                     int employees = -1;
-                    System.out.println(
-                            "1.	Display list employees\n" +
-                                    "2.	Add new employee\n" +
-                                    "3.	Edit employee\n" +
-                                    "4.	Return main menu"
-                    );
-                    employees = screenInputValue.nextInt();
-                    while (employees != 4) {
+                    boolean returnFlag = true;
+                    boolean trueOptionFlag = true;
+                    while (returnFlag) {
+                        System.out.println(
+                                "1.	Display list employees\n" +
+                                        "2.	Add new employee\n" +
+                                        "3.	Edit employee\n" +
+                                        "4.	Return main menu"
+                        );
+                        employees = screenInputValue.nextInt();
                         switch (employees) {
                             case 1:
-                                /*EmployeeServiceImpl.add();*/
-                                Employee employee1 = new Employee(1,"Lê Văn A", "10-10-1999", "Nam", 0123456755 , 123123123, "levana@gmail.com", "Đại Học", "Lễ Tân", "15tr" );
-                                Employee employee2 = new Employee(2,"Lê Văn B", "10-10-1999", "Nam", 0123456755 , 123123123, "levana@gmail.com", "Đại Học", "Lễ Tân", "15tr" );
-                                Employee employee3 = new Employee(3,"Lê Văn C", "10-10-1999", "Nam", 0123456755 , 123123123, "levana@gmail.com", "Đại Học", "Lễ Tân", "15tr" );
-                                Employee employee4 = new Employee(4,"Lê Văn D", "10-10-1999", "Nam", 0123456755 , 123123123, "levana@gmail.com", "Đại Học", "Lễ Tân", "15tr" );
-                                List<Employee> listEmployee = new ArrayList<>();
-                                listEmployee.add(employee1);
-                                listEmployee.add(employee2);
-                                listEmployee.add(employee3);
-                                listEmployee.add(employee4);
-                                System.out.println(listEmployee);
+                                displayListEmployee(listEmployee);
                                 break;
                             case 2:
+                                System.out.println("Hãy input thông tin của Employee");
+                                System.out.println("ID:");
+                                Object inputId = -1;
+                                while (trueOptionFlag){
+                                    inputId = screenInputValue.nextLine();
+                                    if(!EmployeeServiceImpl.CheckId(inputId)){
+                                        System.out.println("Please try again!");
+                                    }else {
+                                        trueOptionFlag = false;
+                                        return inputId;
+                                    }
+                                }
+                                System.out.println("Name:");
+                                String inputName = screenInputValue.nextLine();
+                                System.out.println("BirthDay:");
+                                String inputBirthDay = screenInputValue.nextLine();
+                                System.out.println("Sex:");
+                                String inputSex = screenInputValue.nextLine();
+                                while (EmployeeServiceImpl.checkSex(inputSex)){
+                                    System.out.println("Please try again!");
+                                }
+                                System.out.println("PersonId:");
+                                long inputPersonId = screenInputValue.nextLong();
+                                System.out.println("Phone Number:");
+                                long inputPhoneNumber = screenInputValue.nextLong();
+                                System.out.println("Email:");
+                                String inputEmail = screenInputValue.nextLine();
+                                System.out.println("Academic Level:");
+                                String inputAcademicLevel = screenInputValue.nextLine();
+                                while (EmployeeServiceImpl.CheckAcademicLevel(inputAcademicLevel)){
+                                    System.out.println("Please try again!");
+                                }
+                                System.out.println("Position:");
+                                String inputPosition = screenInputValue.nextLine();
+                                while (EmployeeServiceImpl.CheckPosition(inputPosition)){
+                                    System.out.println("Please try again!");
+                                }
+                                System.out.println("Phone Number:");
+                                String inputSalary = screenInputValue.nextLine();
+                                EmployeeServiceImpl newEmployee = new EmployeeServiceImpl((Integer) inputId, inputName, inputBirthDay, inputSex, inputPersonId, inputPhoneNumber,inputEmail, inputAcademicLevel, inputPosition, inputSalary);
+                                listEmployee.add(newEmployee);
                                 break;
                             case 3:
+                                break;
+                            case 4:
+                                returnFlag = false;
                                 break;
                         }
                     }
@@ -137,6 +173,13 @@ public class FuramaController<choose> {
                     break;
             }
 
+        }
+        return null;
+    }
+
+    private static void displayListEmployee(List<EmployeeServiceImpl> listEmployee) {
+        for (EmployeeServiceImpl ls: listEmployee){
+            System.out.println(ls.show());
         }
     }
 }

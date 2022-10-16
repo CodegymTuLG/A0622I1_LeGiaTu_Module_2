@@ -17,7 +17,8 @@ public class ContractServiceImpl implements ContactService{
     }
 
     @Override
-    public void show() {
+    public String show() {
 
+        return null;
     }
 }
