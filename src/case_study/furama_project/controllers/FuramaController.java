@@ -1,185 +1,152 @@
 package case_study.furama_project.controllers;
 
+import case_study.furama_project.service.CustomerServiceImpl;
 import case_study.furama_project.service.EmployeeServiceImpl;
 
 import java.util.*;
+
 public class FuramaController<choose> {
 
-    public static Object displayMainMenu() {
-        List<EmployeeServiceImpl> listEmployee = new ArrayList<>();
-        int choose = -1;
-        Scanner screenInputValue = new Scanner(System.in);
-        while (choose != 6) {
-            System.out.println(
-                    "1.	Employee Management\n" +
-                            "2.	Customer Management\n" +
-                            "3.	Facility Management\n" +
-                            "4.	Booking Management\n" +
-                            "5.	Promotion Management\n" +
-                            "6.	Exit"
-            );
-            System.out.println("Enter your choice: ");
-            choose = screenInputValue.nextInt();
-            switch (choose) {
+    public static void displayMainMenu() {
+        boolean check = true;
+        while (check) {
+            System.out.println("1. Employee Management");
+            System.out.println("2. Customer Management");
+            System.out.println("3. Facility Management");
+            System.out.println("4. Booking Management");
+            System.out.println("5. Promotion Management");
+            System.out.println("6. Exit");
+            System.out.println("Enter your choice: -");
+            Scanner sc = new Scanner(System.in);
+            switch (sc.nextInt()) {
                 case 1:
-                    int employees = -1;
-                    boolean returnFlag = true;
-                    boolean trueOptionFlag = true;
-                    while (returnFlag) {
-                        System.out.println(
-                                "1.	Display list employees\n" +
-                                        "2.	Add new employee\n" +
-                                        "3.	Edit employee\n" +
-                                        "4.	Return main menu"
-                        );
-                        employees = screenInputValue.nextInt();
-                        switch (employees) {
-                            case 1:
-                                displayListEmployee(listEmployee);
-                                break;
-                            case 2:
-                                System.out.println("Hãy input thông tin của Employee");
-                                System.out.println("ID:");
-                                Object inputId = -1;
-                                while (trueOptionFlag){
-                                    inputId = screenInputValue.nextLine();
-                                    if(!EmployeeServiceImpl.CheckId(inputId)){
-                                        System.out.println("Please try again!");
-                                    }else {
-                                        trueOptionFlag = false;
-                                        return inputId;
-                                    }
-                                }
-                                System.out.println("Name:");
-                                String inputName = screenInputValue.nextLine();
-                                System.out.println("BirthDay:");
-                                String inputBirthDay = screenInputValue.nextLine();
-                                System.out.println("Sex:");
-                                String inputSex = screenInputValue.nextLine();
-                                while (EmployeeServiceImpl.checkSex(inputSex)){
-                                    System.out.println("Please try again!");
-                                }
-                                System.out.println("PersonId:");
-                                long inputPersonId = screenInputValue.nextLong();
-                                System.out.println("Phone Number:");
-                                long inputPhoneNumber = screenInputValue.nextLong();
-                                System.out.println("Email:");
-                                String inputEmail = screenInputValue.nextLine();
-                                System.out.println("Academic Level:");
-                                String inputAcademicLevel = screenInputValue.nextLine();
-                                while (EmployeeServiceImpl.CheckAcademicLevel(inputAcademicLevel)){
-                                    System.out.println("Please try again!");
-                                }
-                                System.out.println("Position:");
-                                String inputPosition = screenInputValue.nextLine();
-                                while (EmployeeServiceImpl.CheckPosition(inputPosition)){
-                                    System.out.println("Please try again!");
-                                }
-                                System.out.println("Phone Number:");
-                                String inputSalary = screenInputValue.nextLine();
-                                EmployeeServiceImpl newEmployee = new EmployeeServiceImpl((Integer) inputId, inputName, inputBirthDay, inputSex, inputPersonId, inputPhoneNumber,inputEmail, inputAcademicLevel, inputPosition, inputSalary);
-                                listEmployee.add(newEmployee);
-                                break;
-                            case 3:
-                                break;
-                            case 4:
-                                returnFlag = false;
-                                break;
-                        }
-                    }
+                    displayEmployeeMenu();
                     break;
                 case 2:
-                    int customers = -1;
-                    System.out.println(
-                            "1. Display list customers\n" +
-                                    "2. Add new customer\n" +
-                                    "3. Edit customer\n" +
-                                    "4. Return main menu"
-                    );
-                    customers = screenInputValue.nextInt();
-                    while (customers != 4) {
-                        switch (customers) {
-                            case 1:
-                                break;
-                            case 2:
-                                break;
-                            case 3:
-                                break;
-                        }
-                    }
+                    displayCustomerMenu();
                     break;
                 case 3:
-                    int facility = -1;
-                    System.out.println(
-                            "1. Display list facility\n" +
-                                    "2. Add new facility\n" +
-                                    "3. Display list facility maintenance\n" +
-                                    "4. Return main menu"
-                    );
-                    facility = screenInputValue.nextInt();
-                    while (facility != 4) {
-                        switch (facility) {
-                            case 1:
-                                break;
-                            case 2:
-                                break;
-                            case 3:
-                                break;
-                        }
-                    }
+                    displayFacilityMenu();
                     break;
                 case 4:
-                    int booking = -1;
-                    System.out.println(
-                            "1. Add new booking\n" +
-                                    "2. Display list booking\n" +
-                                    "3. Create new constracts\n" +
-                                    "4. Display list contracts\n" +
-                                    "5. Edit contracts\n" +
-                                    "6. Return main menu"
-                    );
-                    booking = screenInputValue.nextInt();
-                    while (booking != 6) {
-                        switch (booking) {
-                            case 1:
-                                break;
-                            case 2:
-                                break;
-                            case 3:
-                                break;
-                            case 4:
-                                break;
-                            case 5:
-                                break;
-                        }
-                    }
+                    displayBookingMenu();
                     break;
                 case 5:
-                    int service = -1;
-                    System.out.println(
-                            "1. Display list customers use service\n" +
-                                    "2. Display list customers get voucher\n" +
-                                    "3. Return main menu"
-                    );
-                    service = screenInputValue.nextInt();
-                    while (service != 3) {
-                        switch (service) {
-                            case 1:
-                                break;
-                            case 2:
-                                break;
-                        }
-                    }
+                    displayPromotionMenu();
+                    break;
+                case 6:
                     break;
             }
-
         }
-        return null;
     }
 
-    private static void displayListEmployee(List<EmployeeServiceImpl> listEmployee) {
-        for (EmployeeServiceImpl ls: listEmployee){
-            System.out.println(ls.show());
+    public static void displayEmployeeMenu() {
+        EmployeeServiceImpl employeeServiceIplm = new EmployeeServiceImpl();
+        boolean check = true;
+        while (check) {
+            System.out.println("1. Display list employees");
+            System.out.println("2. Add new employees");
+            System.out.println("3. Edit employees");
+            System.out.println("4. Delete employee");
+            System.out.println("5. Return main menu");
+            Scanner sc = new Scanner(System.in);
+            switch (sc.nextInt()) {
+                case 1:
+                    employeeServiceIplm.show();
+                    break;
+                case 2:
+                    employeeServiceIplm.add();
+                    break;
+                case 3:
+                    employeeServiceIplm.edit();
+                    break;
+                case 4:
+                    employeeServiceIplm.delete();
+                    break;
+                case 5:
+                    check = false;
+                    break;
+            }
+        }
+    }
+
+    public static void displayCustomerMenu() {
+        CustomerServiceImpl customerServiceIplm = new CustomerServiceImpl();
+        boolean check = true;
+        while (check) {
+            System.out.println("1. Display list customer");
+            System.out.println("2. Add new customer");
+            System.out.println("3. Edit customer");
+            System.out.println("4. delete customer");
+            System.out.println("5. Return main menu");
+            Scanner sc = new Scanner(System.in);
+            switch (sc.nextInt()) {
+                case 1:
+                    customerServiceIplm.show();
+                    break;
+                case 2:
+                    customerServiceIplm.add();
+                    break;
+                case 3:
+                    customerServiceIplm.edit();
+                    break;
+                case 4:
+                    customerServiceIplm.delete();
+                    break;
+                case 5:
+                    check = false;
+                    break;
+            }
+        }
+    }
+
+    public static void displayFacilityMenu() {
+        boolean check = true;
+        while (check) {
+            System.out.println("1. Display list facility");
+            System.out.println("2. Add new facility");
+            System.out.println("3. Display list facility maintenance");
+            System.out.println("4. Return main menu");
+            Scanner sc = new Scanner(System.in);
+            switch (sc.nextInt()) {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+            }
+        }
+    }
+
+    public static void displayBookingMenu() {
+        boolean check = true;
+        while (check) {
+            System.out.println("1. Add new booking");
+            System.out.println("2. Display list booking");
+            System.out.println("3. Create new contracts");
+            System.out.println("4. Display list contracts");
+            System.out.println("5. Edit contracts");
+            System.out.println("6. Return main menu");
+            Scanner sc = new Scanner(System.in);
+            switch (sc.nextInt()) {
+                case 1:
+            }
+        }
+    }
+
+    public static void displayPromotionMenu() {
+        boolean check = true;
+        while (check) {
+            System.out.println("1. Display customer use service");
+            System.out.println("2. Display list customer get voucher");
+            System.out.println("3. Return main menu");
+            Scanner sc = new Scanner(System.in);
+            switch (sc.nextInt()) {
+                case 1:
+            }
         }
     }
 }

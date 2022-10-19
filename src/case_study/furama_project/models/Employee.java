@@ -9,11 +9,14 @@ public class Employee extends Person {
 
     }
 
-    public Employee(Integer id, String name, String birthDay, String sex, long personId, long phoneNumber, String email, String academicLevel, String position, String salary) {
+    public Employee(String id, String name, String birthDay, String sex, long personId, long phoneNumber, String email, String academicLevel, String position, String salary) {
         super(id,  name, birthDay, sex, personId, phoneNumber, email);
         this.academicLevel = academicLevel;
         this.position = position;
         this.salary = salary;
+    }
+
+    public Employee(String inputId, String inputName, String inputBirthDay, String inputSex, long inputPersonId, long inputPhoneNumber, String inputEmail, String inputCustomerType, String inputAddress) {
     }
 
     public String getAcademicLevel() {

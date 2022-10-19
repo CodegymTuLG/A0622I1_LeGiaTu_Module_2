@@ -1,9 +1,12 @@
 package case_study.furama_project.service;
 
+import case_study.furama_project.models.Employee;
+
 public class BookingServiceImpl implements BookingService{
     @Override
-    public void add() {
+    public Employee add() {
 
+        return null;
     }
 
     @Override
@@ -17,7 +20,7 @@ public class BookingServiceImpl implements BookingService{
     }
 
     @Override
-    public String show() {
+    public void show() {
 
         return null;
     }

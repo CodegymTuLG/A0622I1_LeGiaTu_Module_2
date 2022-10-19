@@ -1,7 +1,7 @@
 package case_study.furama_project.models;
 
 public abstract class Person {
-    double id;
+    String id;
     String name;
     String birthDay;
     String sex;
@@ -13,7 +13,7 @@ public abstract class Person {
 
     }
 
-    public Person(double id, String name, String birthDay, String sex, long personId, long phoneNumber, String email) {
+    public Person(String id, String name, String birthDay, String sex, long personId, long phoneNumber, String email) {
         this.id = id;
         this.name = name;
         this.birthDay = birthDay;
@@ -23,11 +23,11 @@ public abstract class Person {
         this.email = email;
     }
 
-    public double getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -14,6 +14,9 @@ public class Customer extends Person {
         this.address = address;
     }
 
+    public Customer(String id, String name, String birthDay, String sex, long personId, long phoneNumber, String email, String customerType, String address) {
+    }
+
     public String getCustomerType() {
         return customerType;
     }

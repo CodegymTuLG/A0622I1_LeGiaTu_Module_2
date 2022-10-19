@@ -4,5 +4,5 @@ public interface Service {
     void add();
     void edit();
     void delete();
-    String show();
+    void show();
 }

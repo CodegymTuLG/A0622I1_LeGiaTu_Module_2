@@ -15,7 +15,7 @@ public class insertionSort {
     }
 
     public static void main(String[] args) {
-        int[] array = {6,5,5,6,9,43,253,32,23,44324,43,56,67,78,78,87,78,7,6,5,54,545,3-5,-6,5,25,-5,-4,2,-3,2-5,2,5,25};
+        int[] array = {6,5,5,6,9,43,253,32,23,44,3,24,43,56,67,78,78,87,78,7,6,5,54,545,3-5,-6,5,25,-5,-4,2,-3,2-5,2,5,25};
         System.out.println("before:");
         for(int ar: array){
             System.out.print(ar+ " ");
