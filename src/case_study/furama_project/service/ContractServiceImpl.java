@@ -4,9 +4,8 @@ import case_study.furama_project.models.Employee;
 
 public class ContractServiceImpl implements ContactService{
     @Override
-    public Employee add() {
+    public void add() {
 
-        return null;
     }
 
     @Override
@@ -22,6 +21,5 @@ public class ContractServiceImpl implements ContactService{
     @Override
     public void show() {
 
-        return null;
     }
 }

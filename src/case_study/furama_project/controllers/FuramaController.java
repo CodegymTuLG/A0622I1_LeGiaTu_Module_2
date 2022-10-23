@@ -2,6 +2,7 @@ package case_study.furama_project.controllers;
 
 import case_study.furama_project.service.CustomerServiceImpl;
 import case_study.furama_project.service.EmployeeServiceImpl;
+import case_study.furama_project.service.FacilityServiceImpl;
 
 import java.util.*;
 
@@ -101,6 +102,7 @@ public class FuramaController<choose> {
     }
 
     public static void displayFacilityMenu() {
+        FacilityServiceImpl facilityServiceImpl = new FacilityServiceImpl();
         boolean check = true;
         while (check) {
             System.out.println("1. Display list facility");
@@ -110,8 +112,10 @@ public class FuramaController<choose> {
             Scanner sc = new Scanner(System.in);
             switch (sc.nextInt()) {
                 case 1:
+                    facilityServiceImpl.show();
                     break;
                 case 2:
+                    displayAddNewFacility();
                     break;
                 case 3:
                     break;
@@ -119,6 +123,31 @@ public class FuramaController<choose> {
                     break;
             }
         }
+    }
+
+    private static void displayAddNewFacility() {
+        /*boolean check = true;
+        while (check) {
+            System.out.println("1. Add New Villa");
+            System.out.println("2. Add New House");
+            System.out.println("3. Add New Room");
+            System.out.println("4. Back to menu");
+            Scanner sc = new Scanner(System.in);
+            switch (sc.nextInt()) {
+                case 1:
+                    FacilityServiceImpl.addNewVilla();
+                    break;
+                case 2:
+                    FacilityServiceImpl.addNewHouse();
+                    break;
+                case 3:
+                    FacilityServiceImpl.addNewRoom();
+                    break;
+                case 4:
+                    check = false;
+                    break;
+            }
+        }*/
     }
 
     public static void displayBookingMenu() {

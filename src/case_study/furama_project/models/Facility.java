@@ -2,18 +2,20 @@ package case_study.furama_project.models;
 
 public abstract class Facility {
     private String serviceName;
-    private int usableArea;
+    private String usableArea;
     private String price;
-    private int maxQuantity;
-    private String[] rentType = {"year", "month", "day", "hour"};
+    private String maxQuantity;
+    private String rentType;
 
     public Facility() {
     }
 
-    public Facility(String serviceName, int usableArea, String price) {
+    public Facility(String serviceName, String usableArea, String price, String maxQuantity, String rentType) {
         this.serviceName = serviceName;
         this.usableArea = usableArea;
         this.price = price;
+        this.maxQuantity = maxQuantity;
+        this.rentType = rentType;
     }
 
     public String getServiceName() {
@@ -24,11 +26,11 @@ public abstract class Facility {
         this.serviceName = serviceName;
     }
 
-    public int getUsableArea() {
+    public String getUsableArea() {
         return usableArea;
     }
 
-    public void setUsableArea(int usableArea) {
+    public void setUsableArea(String usableArea) {
         this.usableArea = usableArea;
     }
 
@@ -40,19 +42,19 @@ public abstract class Facility {
         this.price = price;
     }
 
-    public int getMaxQuantity() {
+    public String getMaxQuantity() {
         return maxQuantity;
     }
 
-    public void setMaxQuantity(int maxQuantity) {
+    public void setMaxQuantity(String maxQuantity) {
         this.maxQuantity = maxQuantity;
     }
 
-    public String[] getRentType() {
+    public String getRentType() {
         return rentType;
     }
 
-    public void setRentType(String[] rentType) {
+    public void setRentType(String rentType) {
         this.rentType = rentType;
     }
 }
