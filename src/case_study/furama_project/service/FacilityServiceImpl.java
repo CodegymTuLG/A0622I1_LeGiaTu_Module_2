@@ -1,16 +1,24 @@
 package case_study.furama_project.service;
 
+import case_study.furama_project.controllers.FuramaController;
 import case_study.furama_project.models.*;
+import case_study.furama_project.utils.CheckRegex;
 
 import java.util.*;
 
+
 public class FacilityServiceImpl extends Facility implements FacilityService {
     static final Map<Facility, Integer> listFacility = new LinkedHashMap<Facility, Integer>();
-    static final List<Villa> listVilla = new ArrayList<>();
-    static final List<House> listHouse = new ArrayList<>();
-    static final List<Room> listRoom = new ArrayList<>();
-
+    CheckRegex checkRegex = new CheckRegex();
+    Scanner scanner = new Scanner(System.in);
     static final String[] RENTTYPE = {"year", "month", "day", "hour"};
+    final String VILLASERVICECODE_REGEX = "(SVVL)[-]\\d{4}$";
+    final String HOUSESERVICECODE_REGEX = "(SVHO)[-]\\d{4}$";
+    final String ROOMSERVICECODE_REGEX = "(SVRO)[-]\\d{4}$";
+    final String SERVICENAME_REGEX = "[A-Z][a-z]{2,}$";
+    final String FLOOR_REGEX = "[0-9]+$";
+    final String RENTTYPE_REGEX = "Year|Month|Day|Hour$";
+    final String STANDARD_REGEX = "[A-Z][a-z]{2,}$";
 
     public static boolean checkRentType(String input) {
         for (int i = 0; i < RENTTYPE.length - 1; i++) {
@@ -21,85 +29,98 @@ public class FacilityServiceImpl extends Facility implements FacilityService {
         return false;
     }
 
+    public static void backMenu(String input) {
+        if (input.equals("back") | input.equals("cancel") | input.equals("thoát")) {
+            FuramaController.displayFacilityMenu();
+        }
+    }
+
+
     @Override
     public void add() {
 
     }
 
     @Override
-    public void addNewHouse() {
-        Scanner inputHouseInfo = new Scanner(System.in);
+    public void addNewVilla() {
+        System.out.println("Hãy nhập mã dịch vụ");
+        String serviceCode = "";
+        backMenu(checkRegex.checkValidate(serviceCode, VILLASERVICECODE_REGEX, "Hãy nhập lại!"));
         System.out.println("Hãy nhập tên dịch vụ");
-        String inputServiceName = inputHouseInfo.nextLine();
+        String serviceName = "";
+        backMenu(checkRegex.checkValidate(serviceName, SERVICENAME_REGEX, "Hãy nhập lại!"));
         System.out.println("Hãy nhập diện tích sử dụng");
-        String inputUsableArea = inputHouseInfo.nextLine();
+        String usableArea = scanner.nextLine();
         System.out.println("Hãy nhập chi phí thuê");
-        String inputPrice = inputHouseInfo.nextLine();
+        String price = scanner.nextLine();
         System.out.println("Hãy nhập số lượng người tối đa");
-        String inputMaxQuantity = inputHouseInfo.nextLine();
+        String maxQuantity = scanner.nextLine();
         System.out.println("Hãy nhập kiểu thuê");
-        String inputRentType = inputHouseInfo.nextLine();
-        while (!FacilityServiceImpl.checkRentType(inputRentType)) {
-            inputRentType = inputHouseInfo.nextLine();
-            System.out.println("Please try again!");
-        }
+        String rentType = "";
+        backMenu(checkRegex.checkValidate(rentType, RENTTYPE_REGEX, "Hãy nhập lại!"));
         System.out.println("Hãy nhập tiêu chuẩn phòng");
-        String inputRoomStandard = inputHouseInfo.nextLine();
+        String roomStandard = scanner.nextLine();
+        System.out.println("Hãy nhập diện tích hồ bơi");
+        String poolArea = scanner.nextLine();
         System.out.println("Hãy nhập số tầng");
-        int inputFloorNumber = inputHouseInfo.nextInt();
-        House house = new House(inputServiceName, inputUsableArea, inputPrice, inputMaxQuantity, inputRentType, inputRoomStandard, inputFloorNumber);
-        listHouse.add(house);
+        String floorNumber = "";
+        backMenu(checkRegex.checkValidate(serviceName, FLOOR_REGEX, "Hãy nhập lại!"));
+        Villa villa = new Villa(serviceName, usableArea, price, maxQuantity, rentType, roomStandard, poolArea, floorNumber);
+        listFacility.put(villa, 0);
+        System.out.println("Đã thêm villa thành công!");
     }
 
     @Override
-    public void addNewVilla() {
-        Scanner inputVillaInfo = new Scanner(System.in);
+    public void addNewHouse() {
+
+        System.out.println("Hãy nhập mã dịch vụ");
+        String serviceCode = "";
+        backMenu(checkRegex.checkValidate(serviceCode, HOUSESERVICECODE_REGEX, "Hãy nhập lại!"));
         System.out.println("Hãy nhập tên dịch vụ");
-        String inputServiceName = inputVillaInfo.nextLine();
+        String serviceName = "";
+        backMenu(checkRegex.checkValidate(serviceName, SERVICENAME_REGEX, "Hãy nhập lại!"));
         System.out.println("Hãy nhập diện tích sử dụng");
-        String inputUsableArea = inputVillaInfo.nextLine();
+        String usableArea = scanner.nextLine();
         System.out.println("Hãy nhập chi phí thuê");
-        String inputPrice = inputVillaInfo.nextLine();
+        String price = scanner.nextLine();
         System.out.println("Hãy nhập số lượng người tối đa");
-        String inputMaxQuantity = inputVillaInfo.nextLine();
+        String maxQuantity = scanner.nextLine();
         System.out.println("Hãy nhập kiểu thuê");
-        String inputRentType = inputVillaInfo.nextLine();
-        while (!FacilityServiceImpl.checkRentType(inputRentType)) {
-            inputRentType = inputVillaInfo.nextLine();
-            System.out.println("Please try again!");
-        }
+        String rentType = scanner.nextLine();
+        backMenu(checkRegex.checkValidate(rentType, RENTTYPE_REGEX, "Hãy nhập lại!"));
         System.out.println("Hãy nhập tiêu chuẩn phòng");
-        String inputRoomStandard = inputVillaInfo.nextLine();
-        System.out.println("Hãy nhập diện tích hồ bơi");
-        String inputPoolArea = inputVillaInfo.nextLine();
+        String roomStandard = "";
+        backMenu(checkRegex.checkValidate(roomStandard, STANDARD_REGEX, "Hãy nhập lại!"));
         System.out.println("Hãy nhập số tầng");
-        int inputFloorNumber = inputVillaInfo.nextInt();
-        Villa villa = new Villa(inputServiceName, inputUsableArea, inputPrice, inputMaxQuantity, inputRentType, inputRoomStandard, inputPoolArea, inputFloorNumber);
-        listVilla.add(villa);
+        String floorNumber = scanner.nextLine();
+        backMenu(checkRegex.checkValidate(serviceName, FLOOR_REGEX, "Hãy nhập lại!"));
+        House house = new House(serviceName, usableArea, price, maxQuantity, rentType, roomStandard, floorNumber);
+        listFacility.put(house, 0);
+        System.out.println("Đã thêm house thành công!");
     }
 
     @Override
     public void addNewRoom() {
-        Scanner inputRoomInfo = new Scanner(System.in);
+        System.out.println("Hãy nhập mã dịch vụ");
+        String serviceCode = "";
+        backMenu(checkRegex.checkValidate(serviceCode, ROOMSERVICECODE_REGEX, "Hãy nhập lại!"));
         System.out.println("Hãy nhập tên dịch vụ");
-        String inputServiceName = inputRoomInfo.nextLine();
+        String serviceName = "";
+        backMenu(checkRegex.checkValidate(serviceName, SERVICENAME_REGEX, "Hãy nhập lại!"));
         System.out.println("Hãy nhập diện tích sử dụng");
-        String inputUsableArea = inputRoomInfo.nextLine();
+        String usableArea = scanner.nextLine();
         System.out.println("Hãy nhập chi phí thuê");
-        String inputPrice = inputRoomInfo.nextLine();
+        String price = scanner.nextLine();
         System.out.println("Hãy nhập số lượng người tối đa");
-        String inputMaxQuantity = inputRoomInfo.nextLine();
+        String maxQuantity = scanner.nextLine();
         System.out.println("Hãy nhập kiểu thuê");
-        String inputRentType = inputRoomInfo.nextLine();
-        while (!FacilityServiceImpl.checkRentType(inputRentType)) {
-            inputRentType = inputRoomInfo.nextLine();
-            System.out.println("Please try again!");
-        }
-        System.out.println("Hãy nhập tiêu chuẩn phòng");
-        String inputFreeService = inputRoomInfo.nextLine();
-
-        Room room = new Room(inputServiceName, inputUsableArea, inputPrice, inputMaxQuantity, inputRentType, inputFreeService);
-        listRoom.add(room);
+        String rentType = "";
+        backMenu(checkRegex.checkValidate(rentType, RENTTYPE_REGEX, "Hãy nhập lại!"));
+        System.out.println("Hãy nhập dịch vụ miễn phí đi kèm");
+        String freeService = scanner.nextLine();
+        Room room = new Room(serviceName, usableArea, price, maxQuantity, rentType, freeService);
+        listFacility.put(room, 0);
+        System.out.println("Đã thêm room thành công!");
     }
 
     @Override
@@ -116,7 +137,7 @@ public class FacilityServiceImpl extends Facility implements FacilityService {
     public void show() {
         Set<Facility> facilitys = listFacility.keySet();
         for (Facility facility : facilitys) {
-            System.out.println("Facility: " + facility + " | Số lần: " + listFacility.get(facility));
+            System.out.println("Facility: " + facility.toString() + " | Số lần: " + listFacility.get(facility));
         }
     }
 }

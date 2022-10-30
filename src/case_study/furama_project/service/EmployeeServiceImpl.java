@@ -1,122 +1,91 @@
 package case_study.furama_project.service;
 
+import case_study.furama_project.controllers.FuramaController;
 import case_study.furama_project.models.Employee;
+import case_study.furama_project.utils.CheckBirthDay;
+import case_study.furama_project.utils.CheckRegex;
+import case_study.furama_project.utils.ReadAndWrite;
 
+import java.io.IOException;
 import java.util.*;
 
 public class EmployeeServiceImpl extends Employee implements EmployeeService {
-
-    static final List<Employee> listEmployee = new ArrayList<>();
-    final static String[] SEX = {"Nam", "Nữ"};
-    final static String[] ACADEMICLEVEL = {"Trung cấp", "Cao đẳng", "Đại học", "sau đại học"};
-    final static String[] POSITION = {"lễ tân", "phục vụ", "chuyên viên", "giám sát", "quản lý", "giám đốc"};
-
-    public static boolean checkSex(String input) {
-        for (int i = 0; i < SEX.length - 1; i++) {
-            if (input.equals(SEX[i])) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean CheckAcademicLevel(String input) {
-        for (int i = 0; i < ACADEMICLEVEL.length - 1; i++) {
-            if (input.equals(ACADEMICLEVEL[i])) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean CheckPosition(String input) {
-        for (int i = 0; i < POSITION.length - 1; i++) {
-            if (input.equals(POSITION[i])) {
-                return true;
-            }
-        }
-        return false;
-    }
-
+    Scanner scanner = new Scanner(System.in);
+    CheckRegex checkRegex = new CheckRegex();
+    CheckBirthDay checkBirthDay = new CheckBirthDay();
+    static List<Employee> listEmployee = new ArrayList<>();
+    final String SEX_REGEX = "Nam|Nữ";
+    final String ACADEMICLEVEL_REGEX = "Trung cấp|Cao đẳng|Đại học|Sau đại học";
+    final String POSITION_REGEX = "Lễ tân|Phục vụ|Chuyên viên|Giám sát|Quản lý|Giám đốc";
+    final String YEAR_REGEX = "[0-9]{4}";
+    final String MONTH_REGEX = "(0[1-9]|1[0-2])";
+    final String DAY_REGEX = "(0[1-9]|1[0-9]|2[0-9]|3[0-1])";
+    final String DAYTIME_REGEX = DAY_REGEX + "/" + MONTH_REGEX + "/" + YEAR_REGEX;
+    final String PHONENUMBER_REGEX = "[0-9]{9,13}";
     @Override
-    public void add() {
-        Scanner inputNewEmployee = new Scanner(System.in);
+    public void add()  {
         System.out.println("Hãy input thông tin của Employee");
         System.out.println("ID:");
-        String inputId = inputNewEmployee.nextLine();
+        String id = scanner.nextLine();
         System.out.println("Name:");
-        String inputName = inputNewEmployee.nextLine();
-        System.out.println("BirthDay (yyyy/mm/dd):");
-        String inputBirthDay = inputNewEmployee.nextLine();
-        System.out.println("Sex (Nam/Nữ):");
-        String inputSex = inputNewEmployee.nextLine();
-        while (!EmployeeServiceImpl.checkSex(inputSex)) {
-            inputSex = inputNewEmployee.nextLine();
-            System.out.println("Please try again!");
-        }
+        String name = scanner.nextLine();
+        System.out.println("BirthDay (dd/mm/yyyy):");
+        String birthDay = "";
+        birthDay = checkBirthDay.checkValidate(birthDay, DAYTIME_REGEX, "Hãy nhập lại!");
+        System.out.println("Sex:");
+        String sex = "";
+        sex = checkRegex.checkValidate(sex, SEX_REGEX, "Hãy nhập lại!");
         System.out.println("PersonId:");
-        long inputPersonId = inputNewEmployee.nextLong();
+        String personId = scanner.nextLine();
         System.out.println("Phone Number:");
-        long inputPhoneNumber = inputNewEmployee.nextLong();
+        String phoneNumber = "";
+        phoneNumber = checkRegex.checkValidate(phoneNumber, PHONENUMBER_REGEX, "Hãy nhập lại!");
         System.out.println("Email:");
-        String inputEmail = inputNewEmployee.nextLine();
+        String email = scanner.nextLine();
         System.out.println("Academic Level:");
-        String inputAcademicLevel = inputNewEmployee.nextLine();
-        while (!EmployeeServiceImpl.CheckAcademicLevel(inputAcademicLevel)) {
-            inputAcademicLevel = inputNewEmployee.nextLine();
-            System.out.println("Please try again!");
-        }
+        String academicLevel = "";
+        academicLevel = checkRegex.checkValidate(academicLevel, ACADEMICLEVEL_REGEX, "Hãy nhập lại!");
         System.out.println("Position:");
-        String inputPosition = inputNewEmployee.nextLine();
-        while (!EmployeeServiceImpl.CheckPosition(inputPosition)) {
-            inputPosition = inputNewEmployee.nextLine();
-            System.out.println("Please try again!");
-        }
+        String position = "";
+        position = checkRegex.checkValidate(position, POSITION_REGEX, "Hãy nhập lại!");
         System.out.println("Input Salary:");
-        String inputSalary = inputNewEmployee.nextLine();
-        Employee newEmployee = new Employee(inputId, inputName, inputBirthDay, inputSex, inputPersonId, inputPhoneNumber, inputEmail, inputAcademicLevel, inputPosition, inputSalary);
+        String salary = scanner.nextLine();
+        Employee newEmployee = new Employee(id, name, birthDay, sex, personId, phoneNumber, email, academicLevel, position, salary);
         listEmployee.add(newEmployee);
+        ReadAndWrite.write(listEmployee, "E:\\Study\\CodegymStudyMaterials\\module_02\\src\\case_study\\furama_project\\data");
     }
 
     @Override
     public void edit() {
         System.out.println("Enter id do you want to edit");
-        Scanner inputEdit = new Scanner(System.in);
-        String id = inputEdit.nextLine();
+        String id = scanner.nextLine();
         for (int i = 0; i < listEmployee.size(); i++) {
-            if (id == listEmployee.get(i).getId()) {
+            if (id.equals(listEmployee.get(i).getId())) {
                 System.out.println("Hãy input thông tin của Employee có ID là " + id);
                 System.out.println("Name:");
-                String inputName = inputEdit.nextLine();
+                String name = scanner.nextLine();
                 System.out.println("BirthDay (yyyy/mm/dd):");
-                String inputBirthDay = inputEdit.nextLine();
-                System.out.println("Sex (Nam/Nữ):");
-                String inputSex = inputEdit.nextLine();
-                while (!EmployeeServiceImpl.checkSex(inputSex)) {
-                    inputSex = inputEdit.nextLine();
-                    System.out.println("Please try again!");
-                }
+                String birthDay = "";
+                birthDay = checkBirthDay.checkValidate(birthDay, DAYTIME_REGEX, "Hãy nhập lại!");
+                System.out.println("Sex:");
+                String sex = "";
+                sex = checkRegex.checkValidate(sex, SEX_REGEX, "Hãy nhập lại!");
                 System.out.println("PersonId:");
-                long inputPersonId = inputEdit.nextLong();
+                String personId = scanner.nextLine();
                 System.out.println("Phone Number:");
-                long inputPhoneNumber = inputEdit.nextLong();
+                String phoneNumber = "";
+                phoneNumber = checkRegex.checkValidate(phoneNumber, PHONENUMBER_REGEX, "Hãy nhập lại!");
                 System.out.println("Email:");
-                String inputEmail = inputEdit.nextLine();
+                String email = scanner.nextLine();
                 System.out.println("Academic Level:");
-                String inputAcademicLevel = inputEdit.nextLine();
-                while (!EmployeeServiceImpl.CheckAcademicLevel(inputAcademicLevel)) {
-                    inputAcademicLevel = inputEdit.nextLine();
-                    System.out.println("Please try again!");
-                }
+                String academicLevel = "";
+                academicLevel =checkRegex.checkValidate(academicLevel, ACADEMICLEVEL_REGEX, "Hãy nhập lại!");
                 System.out.println("Position:");
-                String inputPosition = inputEdit.nextLine();
-                while (!EmployeeServiceImpl.CheckPosition(inputPosition)) {
-                    inputPosition = inputEdit.nextLine();
-                    System.out.println("Please try again!");
-                }
+                String position = "";
+                position = checkRegex.checkValidate(position, POSITION_REGEX, "Hãy nhập lại!");
                 System.out.println("Input Salary:");
-                String inputSalary = inputEdit.nextLine();
-                listEmployee.set(i, new Employee(id, inputName, inputBirthDay, inputSex, inputPersonId, inputPhoneNumber, inputEmail, inputAcademicLevel, inputPosition, inputSalary));
+                String inputSalary = scanner.nextLine();
+                listEmployee.set(i, new Employee(id, name, birthDay, sex, personId, phoneNumber, email, academicLevel, position, inputSalary));
             }
         }
     }
@@ -127,23 +96,24 @@ public class EmployeeServiceImpl extends Employee implements EmployeeService {
         Scanner inputEdit = new Scanner(System.in);
         String id = inputEdit.nextLine();
         boolean isDelete = false;
-        for (Employee ls : listEmployee){
-            if(id.equals(ls.getId())){
+        for (Employee ls : listEmployee) {
+            if (id.equals(ls.getId())) {
                 listEmployee.remove(ls);
                 isDelete = true;
                 break;
             }
             isDelete = false;
         }
-        if(!isDelete){
+        if (!isDelete) {
             System.out.println("Không tim thấy Id cần xóa");
-        }else {
+        } else {
             System.out.println("Đã xóa thành công!");
         }
     }
 
     @Override
     public void show() {
+        listEmployee = ReadAndWrite.read("E:\\Study\\CodegymStudyMaterials\\module_02\\src\\case_study\\furama_project\\data\\employee.csv");
         for (Employee ls : listEmployee) {
             System.out.println(ls);
         }

@@ -9,14 +9,26 @@ public class Employee extends Person {
 
     }
 
-    public Employee(String id, String name, String birthDay, String sex, long personId, long phoneNumber, String email, String academicLevel, String position, String salary) {
-        super(id,  name, birthDay, sex, personId, phoneNumber, email);
+    public Employee(String id, String name, String birthDay, String sex, String personId, String phoneNumber, String email, String academicLevel, String position, String salary) {
+        super(id, name, birthDay, sex, personId, phoneNumber, email);
         this.academicLevel = academicLevel;
         this.position = position;
         this.salary = salary;
     }
 
-    public Employee(String inputId, String inputName, String inputBirthDay, String inputSex, long inputPersonId, long inputPhoneNumber, String inputEmail, String inputCustomerType, String inputAddress) {
+    public Employee(String line) {
+        String[] data = line.split(",");
+        this.id = data[0];
+        this.name = data[1];
+        this.birthDay = data[2];
+        this.sex = data[3];
+        this.personId = data[4];
+        this.phoneNumber = data[5];
+        this.email = data[6];
+        this.academicLevel = data[7];
+        this.position = data[8];
+        this.salary = data[9];
+
     }
 
     public String getAcademicLevel() {
@@ -55,6 +67,19 @@ public class Employee extends Person {
                 ", academicLevel='" + academicLevel + '\'' +
                 ", position='" + position + '\'' +
                 ", salary='" + salary + '\'' +
-                '}'+'\n';
+                '}' + '\n';
+    }
+
+    public String getInfo() {
+        return id +
+                "," + name +
+                "," + birthDay +
+                "," + sex +
+                "," + personId +
+                "," + phoneNumber +
+                "," + email +
+                "," + academicLevel +
+                "," + position +
+                "," + salary;
     }
 }

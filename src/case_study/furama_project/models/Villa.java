@@ -3,14 +3,14 @@ package case_study.furama_project.models;
 public class Villa extends Facility {
     private String roomStandard;
     private String poolArea;
-    private int floorNumber;
+    private String floorNumber;
 
     public Villa() {
 
     }
 
-    public Villa(String serviceName, String usableArea, String price, String maxQuantity, String rentType, String roomStandard, String poolArea, int floorNumber) {
-        super();
+    public Villa(String serviceName, String usableArea, String price, String maxQuantity, String rentType, String roomStandard, String poolArea, String floorNumber) {
+        super(serviceName, usableArea, price, maxQuantity, rentType);
         this.roomStandard = roomStandard;
         this.poolArea = poolArea;
         this.floorNumber = floorNumber;
@@ -32,11 +32,21 @@ public class Villa extends Facility {
         this.poolArea = poolArea;
     }
 
-    public int getFloorNumber() {
+    public String getFloorNumber() {
         return floorNumber;
     }
 
-    public void setFloorNumber(int floorNumber) {
+    public void setFloorNumber(String floorNumber) {
         this.floorNumber = floorNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Villa{" +
+                super.toString() +
+                "roomStandard='" + roomStandard + '\'' +
+                ", poolArea='" + poolArea + '\'' +
+                ", floorNumber=" + floorNumber +
+                '}';
     }
 }

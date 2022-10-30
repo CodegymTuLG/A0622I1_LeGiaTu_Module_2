@@ -3,8 +3,7 @@ import java.io.IOException;
 
 public class Test {
     public static void main(String[] args) throws Exception {
-
-        /*CopyFile.copyFiles("testfile.txt","copyfiletest.txt");*/
-        CopyFile.countCharacter("testfile.txt");
+        System.out.println(CopyFile.copyFiles("testfile.txt","copyfiletest.txt"));
+        System.out.println("Count character: " + CopyFile.countCharacter("testfile.txt"));
     }
 }

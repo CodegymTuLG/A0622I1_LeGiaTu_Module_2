@@ -1,19 +1,21 @@
 package case_study.furama_project.models;
 
+import java.util.Calendar;
+
 public abstract class Person {
     String id;
     String name;
     String birthDay;
     String sex;
-    long personId;
-    long phoneNumber;
+    String personId;
+    String phoneNumber;
     String email;
 
     public Person() {
 
     }
 
-    public Person(String id, String name, String birthDay, String sex, long personId, long phoneNumber, String email) {
+    public Person(String id, String name, String birthDay, String sex, String personId, String phoneNumber, String email) {
         this.id = id;
         this.name = name;
         this.birthDay = birthDay;
@@ -55,19 +57,19 @@ public abstract class Person {
         this.sex = sex;
     }
 
-    public long getPersonId() {
+    public String getPersonId() {
         return personId;
     }
 
-    public void setPersonId(long personId) {
+    public void setPersonId(String personId) {
         this.personId = personId;
     }
 
-    public long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
