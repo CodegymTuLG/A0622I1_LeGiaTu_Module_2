@@ -3,14 +3,14 @@ package case_study.furama_project.models;
 public abstract class Facility {
     private String serviceName;
     private String usableArea;
-    private String price;
-    private String maxQuantity;
+    private int price;
+    private int maxQuantity;
     private String rentType;
 
     public Facility() {
     }
 
-    public Facility(String serviceName, String usableArea, String price, String maxQuantity, String rentType) {
+    public Facility(String serviceName, String usableArea, int price, int maxQuantity, String rentType) {
         this.serviceName = serviceName;
         this.usableArea = usableArea;
         this.price = price;
@@ -34,19 +34,19 @@ public abstract class Facility {
         this.usableArea = usableArea;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
-    public String getMaxQuantity() {
+    public int getMaxQuantity() {
         return maxQuantity;
     }
 
-    public void setMaxQuantity(String maxQuantity) {
+    public void setMaxQuantity(int maxQuantity) {
         this.maxQuantity = maxQuantity;
     }
 

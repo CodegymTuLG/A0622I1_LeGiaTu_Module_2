@@ -1,6 +1,9 @@
 package ss17_binary_file_and_serialization.product_manage_app;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
+    private static final long serialVersionUID = -5465465;
     private String id;
     private String name;
     private String maker;
@@ -69,5 +72,16 @@ public class Product {
 
     public String getInfo() {
         return this.id + "," + this.name + "," + this.maker  + "," + this.price  + "," + this.other;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", maker='" + maker + '\'' +
+                ", price='" + price + '\'' +
+                ", other='" + other + '\'' +
+                '}';
     }
 }

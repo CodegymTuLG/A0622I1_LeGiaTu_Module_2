@@ -1,15 +1,29 @@
 package case_study.furama_project.utils;
 
-import case_study.furama_project.models.Employee;
-
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class ReadAndWrite {
+    public static void resetFile(String filepath){
+        File file = new File(filepath);
+        try (BufferedWriter buffered = new BufferedWriter(new FileWriter(filepath, false))) {
+            //
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void writeNew(String collection, String filepath){
+        try (BufferedWriter buffered = new BufferedWriter(new FileWriter(filepath, true))) {
+            buffered.write(collection);
+            buffered.newLine();
+            buffered.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-    public static void write(List<Employee> collections, String filepath) {
+    public static void write(String collection, String filepath) {
         File file = new File(filepath);
         if (!file.exists()) {
             try {
@@ -19,25 +33,24 @@ public class ReadAndWrite {
             }
         }
         try (BufferedWriter buffered = new BufferedWriter(new FileWriter(filepath, true))) {
-            for (Employee cl: collections) {
-                buffered.write(cl.getInfo());
+                buffered.write(collection);
                 buffered.newLine();
-            }
             buffered.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static List<Employee> read(String filepath) {
-        List<Employee> list = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
+    public static List<String[]> read(String filepath) {
+        List<String[]> list = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File(filepath)))) {
             String line = null;
             while ((line = reader.readLine()) != null) {
                 if (line.trim().equals("")) {
                     continue;
                 }
-                list.add(new Employee(line));
+                String[] stringArray = line.split(",");
+                list.add(stringArray);
             }
         } catch (IOException e) {
             e.printStackTrace();

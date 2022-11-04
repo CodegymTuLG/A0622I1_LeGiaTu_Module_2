@@ -28,7 +28,7 @@ public class Main {
                     case 1:
                         productList = (List<Product>) ReadAndWrite.read("E:\\Study\\CodegymStudyMaterials\\module_02\\src\\Product.csv");
                         for (Product ls : productList) {
-                            System.out.println(ls);
+                            System.out.println(ls.toString());
                         }
                         break;
                     case 2:
@@ -52,7 +52,7 @@ public class Main {
                         String idEdit = scanner.nextLine();
                         for (int i = 0; i < productList.size(); i++) {
                             if (idEdit.equals(productList.get(i).getId())) {
-                                System.out.println("Hãy input thông tin của Employee có ID là " + idEdit);
+                                System.out.println("Product có ID là " + idEdit);
                                 System.out.println("Tên sản phẩm");
                                 String nameEdit = scanner.nextLine();
                                 System.out.println("Hãng sản xuất");

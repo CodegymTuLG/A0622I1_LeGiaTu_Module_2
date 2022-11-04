@@ -21,6 +21,7 @@ public class CheckBirthDay {
         while (flag);
         return input;
     }
+
     public static boolean checkBirthDay(String input) {
         int year = (Integer.parseInt(String.valueOf(input.charAt(6)))*1000 + Integer.parseInt(String.valueOf(input.charAt(7)))*100 + Integer.parseInt(String.valueOf(input.charAt(8)))*10 + Integer.parseInt(String.valueOf(input.charAt(9))))*10000;
         int month = (Integer.parseInt(String.valueOf(input.charAt(3)))*10 + Integer.parseInt(String.valueOf(input.charAt(4))))*100;

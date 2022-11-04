@@ -24,6 +24,7 @@ public class FuramaController<choose> {
                 Scanner sc = new Scanner(System.in);
                 switch (Integer.parseInt(String.valueOf(sc.nextInt()))) {
                     case 1:
+
                         displayEmployeeMenu();
                         break;
                     case 2:
@@ -45,6 +46,7 @@ public class FuramaController<choose> {
                 }
             }
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("Wrong flow!!! Back to Main Menu");
             displayMainMenu();
         }
@@ -53,6 +55,7 @@ public class FuramaController<choose> {
     public static void displayEmployeeMenu() {
         try {
             EmployeeServiceImpl employeeServiceIplm = new EmployeeServiceImpl();
+            employeeServiceIplm.loadDataFromFile();
             boolean check = true;
             while (check) {
                 System.out.println("1. Display list employees");
@@ -80,6 +83,7 @@ public class FuramaController<choose> {
                 }
             }
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("Wrong flow!!! Back to Main Menu");
             displayMainMenu();
         }

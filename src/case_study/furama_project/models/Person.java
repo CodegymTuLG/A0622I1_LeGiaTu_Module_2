@@ -3,7 +3,7 @@ package case_study.furama_project.models;
 import java.util.Calendar;
 
 public abstract class Person {
-    String id;
+    int id;
     String name;
     String birthDay;
     String sex;
@@ -15,7 +15,7 @@ public abstract class Person {
 
     }
 
-    public Person(String id, String name, String birthDay, String sex, String personId, String phoneNumber, String email) {
+    public Person(int id, String name, String birthDay, String sex, String personId, String phoneNumber, String email) {
         this.id = id;
         this.name = name;
         this.birthDay = birthDay;
@@ -25,11 +25,11 @@ public abstract class Person {
         this.email = email;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

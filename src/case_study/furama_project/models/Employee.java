@@ -3,33 +3,32 @@ package case_study.furama_project.models;
 public class Employee extends Person {
     String academicLevel;
     String position;
-    String salary;
+    int salary;
 
     public Employee() {
 
     }
 
-    public Employee(String id, String name, String birthDay, String sex, String personId, String phoneNumber, String email, String academicLevel, String position, String salary) {
+    public Employee(int id, String name, String birthDay, String sex, String personId, String phoneNumber, String email, String academicLevel, String position, int salary) {
         super(id, name, birthDay, sex, personId, phoneNumber, email);
         this.academicLevel = academicLevel;
         this.position = position;
         this.salary = salary;
     }
 
-    public Employee(String line) {
-        String[] data = line.split(",");
-        this.id = data[0];
-        this.name = data[1];
-        this.birthDay = data[2];
-        this.sex = data[3];
-        this.personId = data[4];
-        this.phoneNumber = data[5];
-        this.email = data[6];
-        this.academicLevel = data[7];
-        this.position = data[8];
-        this.salary = data[9];
-
-    }
+//    public Employee(String line) {
+//        String[] data = line.split(",");
+//        this.id = Integer.parseInt(data[0]);
+//        this.name = data[1];
+//        this.birthDay = data[2];
+//        this.sex = data[3];
+//        this.personId = data[4];
+//        this.phoneNumber = data[5];
+//        this.email = data[6];
+//        this.academicLevel = data[7];
+//        this.position = data[8];
+//        this.salary = Integer.parseInt(data[9]);
+//    }
 
     public String getAcademicLevel() {
         return academicLevel;
@@ -47,11 +46,11 @@ public class Employee extends Person {
         this.position = position;
     }
 
-    public String getSalary() {
+    public int getSalary() {
         return salary;
     }
 
-    public void setSalary(String salary) {
+    public void setSalary(int salary) {
         this.salary = salary;
     }
 
